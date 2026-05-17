@@ -12,19 +12,11 @@ Cloudflare reads `wrangler.jsonc`, provisions D1/R2 bindings, and runs the Worke
 
 ## Railway
 
-Railway buttons point at a published Railway template, not directly at arbitrary repo config. The Railway CLI can smoke-deploy the project, but template publishing happens in the Railway dashboard:
+The Railway button points at the published template:
 
 ```md
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/agent-artifact-engine?utm_campaign=agent-artifact-engine)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/fMPNjv?referralCode=nzxj46&utm_medium=integration&utm_source=template&utm_campaign=generic)
 ```
-
-Add an affiliate/referral parameter after you copy it from Railway:
-
-```md
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/agent-artifact-engine?utm_campaign=agent-artifact-engine&referralCode=YOUR_CODE)
-```
-
-Keep the README button hidden or marked pending until the Railway template exists.
 
 Minimum Railway template setup:
 

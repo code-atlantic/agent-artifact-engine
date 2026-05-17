@@ -4,21 +4,19 @@ Railway runs the Node/file-store server. It is a good one-click target for peopl
 
 ## Deploy Button
 
-The CLI can deploy this repo with `railway up`, but publishing a reusable Railway template is a dashboard action. Create a Railway template from this GitHub repo, publish it from Workspace Settings -> Templates, then replace the placeholder template code:
+The published Railway template is:
 
 ```md
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/agent-artifact-engine?utm_campaign=agent-artifact-engine)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/fMPNjv?referralCode=nzxj46&utm_medium=integration&utm_source=template&utm_campaign=generic)
 ```
 
-If you have a Railway referral link, append its referral parameter to the template URL:
+Template URL:
 
-```md
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/agent-artifact-engine?utm_campaign=agent-artifact-engine&referralCode=YOUR_CODE)
+```txt
+https://railway.com/deploy/fMPNjv?referralCode=nzxj46&utm_medium=integration&utm_source=template&utm_campaign=generic
 ```
 
-Do not publish the README button until the template exists, otherwise it will send users to a missing template.
-
-The CLI command `railway deploy -t <template>` deploys an already-published template into a project. It does not publish this repo as a new template.
+The CLI command `railway deploy -t <template>` can deploy an already-published template into a project.
 
 ## Template Settings
 
