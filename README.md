@@ -100,6 +100,17 @@ npm run static:serve -- --dir static-export --port 4173
 
 Static export is read-only. New publishes require running the dynamic server and exporting again.
 
+## Cloudflare
+
+The repo includes Cloudflare Pages deployment basics:
+
+```sh
+STATIC_BASE_URL=https://your-project.pages.dev npm run static:export
+npm run cf:pages:deploy -- --project-name your-project
+```
+
+See `docs/cloudflare.md`.
+
 ## Boundary
 
 Core exposes primitives and optional hooks. Hosted products should implement their own identity, moderation, analytics, billing, admin, and policy layers around this engine.

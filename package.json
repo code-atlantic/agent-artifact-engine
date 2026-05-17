@@ -10,9 +10,62 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./core/config": {
+      "types": "./dist/core/config.d.ts",
+      "import": "./dist/core/config.js"
+    },
+    "./core/types": {
+      "types": "./dist/core/types.d.ts",
+      "import": "./dist/core/types.js"
+    },
+    "./core/validation": {
+      "types": "./dist/core/validation.d.ts",
+      "import": "./dist/core/validation.js"
+    },
+    "./render/html": {
+      "types": "./dist/render/html.d.ts",
+      "import": "./dist/render/html.js"
+    },
+    "./render/mdx": {
+      "types": "./dist/render/mdx.d.ts",
+      "import": "./dist/render/mdx.js"
+    },
+    "./render/source": {
+      "types": "./dist/render/source.d.ts",
+      "import": "./dist/render/source.js"
+    },
+    "./security/csp": {
+      "types": "./dist/security/csp.d.ts",
+      "import": "./dist/security/csp.js"
+    },
+    "./storage/file-store": {
+      "types": "./dist/storage/file-store.d.ts",
+      "import": "./dist/storage/file-store.js"
+    },
+    "./utils/hash": {
+      "types": "./dist/utils/hash.d.ts",
+      "import": "./dist/utils/hash.js"
+    },
+    "./utils/slug": {
+      "types": "./dist/utils/slug.d.ts",
+      "import": "./dist/utils/slug.js"
+    },
+    "./utils/taxonomy": {
+      "types": "./dist/utils/taxonomy.d.ts",
+      "import": "./dist/utils/taxonomy.js"
+    },
+    "./utils/url": {
+      "types": "./dist/utils/url.d.ts",
+      "import": "./dist/utils/url.js"
+    },
+    "./view/pages": {
+      "types": "./dist/view/pages.d.ts",
+      "import": "./dist/view/pages.js"
     }
   },
   "files": [
+    "cloudflare",
     "dist",
     "README.md",
     "docs"
@@ -24,6 +77,9 @@
     "dev": "tsx watch src/http/server.ts",
     "clean": "rm -rf dist",
     "build": "npm run clean && tsc -p tsconfig.json",
+    "cf:pages:build": "npm run static:export",
+    "cf:pages:deploy": "wrangler pages deploy static-export",
+    "cf:pages:dev": "wrangler pages dev static-export",
     "check": "npm run build && npm test",
     "start": "node dist/http/server.js",
     "test": "vitest run",
@@ -46,6 +102,7 @@
     "@types/node": "^25.0.0",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.14"
+    "vitest": "^4.0.14",
+    "wrangler": "^4.92.0"
   }
 }

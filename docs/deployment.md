@@ -32,6 +32,17 @@ Local preview:
 npm run static:serve -- --dir static-export --port 4173
 ```
 
+## Cloudflare Pages
+
+Cloudflare Pages can serve the static export directly:
+
+```sh
+STATIC_BASE_URL=https://your-project.pages.dev npm run static:export
+npm run cf:pages:deploy -- --project-name your-project
+```
+
+See `docs/cloudflare.md` for the included Wrangler Pages example and the future dynamic Worker adapter shape.
+
 ## Container Or VM
 
 ```sh
