@@ -28,19 +28,23 @@ Use the included `railway.toml`:
 - Start command: `npm start`
 - Health check: `/health`
 - Public networking: enabled
-- Volume mount: set `DATA_DIR` to the mounted path, for example `/data`
+- Volume mount: attach a persistent volume at `/data`
 
-Suggested variables:
+Required template variable:
 
 ```sh
-HOST=0.0.0.0
-PORT=3000
+PUBLISH_TOKEN=${{ secret(64) }}
+```
+
+Optional template variables:
+
+```sh
 DATA_DIR=/data
-PUBLIC_BASE_URL=https://your-service.up.railway.app
-ARTIFACT_BASE_URL=https://your-service.up.railway.app
-PUBLISH_TOKEN=<generated secret>
+MAX_SOURCE_BYTES=1048576
 ARTIFACT_ALLOW_SCRIPTS=false
 ```
+
+`DATA_DIR` may be omitted if the volume is attached, because the app uses Railway's `RAILWAY_VOLUME_MOUNT_PATH` automatically. `PUBLIC_BASE_URL` and `ARTIFACT_BASE_URL` may also be omitted because the app uses Railway's public domain automatically.
 
 The Railway template is still OSS self-hosting. It does not add SaaS accounts, email, moderation, billing, admin tooling, or shared infrastructure.
 
@@ -52,7 +56,7 @@ Once the CLI is logged in:
 railway login
 railway init
 railway volume add --mount-path /data
-railway variables --set "HOST=0.0.0.0" --set "DATA_DIR=/data" --set "ARTIFACT_ALLOW_SCRIPTS=false"
+railway variables --set "ARTIFACT_ALLOW_SCRIPTS=false"
 railway variables --set "PUBLISH_TOKEN=<generated secret>"
 railway up
 railway domain

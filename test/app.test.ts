@@ -2,6 +2,7 @@ import { mkdtemp, rm } from "node:fs/promises";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import type { AppConfig } from "../src/core/config.js";
+import { loadConfig } from "../src/core/config.js";
 import { buildApp } from "../src/http/app.js";
 import { FileArtifactStore } from "../src/storage/file-store.js";
 
@@ -138,5 +139,17 @@ describe("agent artifact engine", () => {
     } finally {
       await fixture.cleanup();
     }
+  });
+
+  it("uses Railway provided domain and volume defaults", () => {
+    const config = loadConfig({
+      PORT: "8080",
+      RAILWAY_PUBLIC_DOMAIN: "agent-artifact-engine-production.up.railway.app",
+      RAILWAY_VOLUME_MOUNT_PATH: "/data"
+    });
+
+    expect(config.publicBaseUrl).toBe("https://agent-artifact-engine-production.up.railway.app");
+    expect(config.artifactBaseUrl).toBe("https://agent-artifact-engine-production.up.railway.app");
+    expect(config.dataDir).toBe("/data");
   });
 });

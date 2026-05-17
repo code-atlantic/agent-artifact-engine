@@ -25,3 +25,13 @@ Add an affiliate/referral parameter after you copy it from Railway:
 ```
 
 Keep the README button hidden or marked pending until the Railway template exists.
+
+Minimum Railway template setup:
+
+- GitHub service source: `code-atlantic/agent-artifact-engine`
+- Public networking: HTTP enabled
+- Healthcheck path: `/health`
+- Persistent volume: mounted at `/data`
+- Required variable: `PUBLISH_TOKEN=${{ secret(64) }}`
+
+The app will use Railway's provided public domain and volume mount variables automatically.
