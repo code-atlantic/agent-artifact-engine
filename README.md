@@ -53,6 +53,7 @@ curl -X POST http://127.0.0.1:3000/v1/artifacts \
 - Static export for read-only hosting.
 - Dynamic Cloudflare Worker adapter backed by D1/R2.
 - Railway/VM/container deployment basics for the Node server.
+- Generic stdio MCP server for agent publishing.
 - Optional shared-token auth for self-hosted write protection.
 
 ## Environment
@@ -129,6 +130,33 @@ See `docs/cloudflare.md`.
 ## Railway
 
 Deploy with the Railway button above. The template mounts persistent storage at `/data`; see `docs/railway.md` for storage and template notes.
+
+## MCP
+
+Build the generic stdio MCP server:
+
+```sh
+npm run mcp:build
+```
+
+Configure it with any Agent Artifact Engine URL:
+
+```json
+{
+  "mcpServers": {
+    "agent-artifact-engine": {
+      "command": "node",
+      "args": ["/absolute/path/to/agent-artifact-engine/mcp/agent-artifact-engine/dist/server.js"],
+      "env": {
+        "AGENT_ARTIFACT_ENGINE_URL": "https://your-engine.example.com",
+        "AGENT_ARTIFACT_ENGINE_TOKEN": "optional-publish-token"
+      }
+    }
+  }
+}
+```
+
+See `mcp/agent-artifact-engine/README.md`.
 
 ## Boundary
 
