@@ -1,10 +1,10 @@
 import { mkdir, rm, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
-import { loadConfig, type AppConfig } from "../src/config.js";
-import { makeNonce } from "../src/security.js";
-import { FileArtifactStore } from "../src/storage.js";
-import type { ArtifactRecord, ArtifactVersion } from "../src/types.js";
-import { renderArtifactViewer, renderEmbed, renderHome } from "../src/views.js";
+import { loadConfig, type AppConfig } from "../src/core/config.js";
+import type { ArtifactRecord, ArtifactVersion } from "../src/core/types.js";
+import { makeNonce } from "../src/security/csp.js";
+import { FileArtifactStore } from "../src/storage/file-store.js";
+import { renderArtifactViewer, renderEmbed, renderHome } from "../src/view/pages.js";
 
 const outDir = argValue("--out") ?? process.env.STATIC_OUT_DIR ?? "static-export";
 const dataDir = argValue("--data-dir") ?? process.env.DATA_DIR ?? ".data";

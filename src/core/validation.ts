@@ -1,5 +1,5 @@
-import { isValidSlug } from "./slug.js";
-import { MAX_ARTIFACT_CATEGORIES, MAX_ARTIFACT_TAGS, normalizeTaxonomyLabels } from "./taxonomy.js";
+import { isValidSlug } from "../utils/slug.js";
+import { MAX_ARTIFACT_CATEGORIES, MAX_ARTIFACT_TAGS, normalizeTaxonomyLabels } from "../utils/taxonomy.js";
 import type {
   ArtifactSourceFormat,
   ArtifactVisibility,

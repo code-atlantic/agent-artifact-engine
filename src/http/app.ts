@@ -1,11 +1,11 @@
 import fastify, { type FastifyReply, type FastifyRequest } from "fastify";
-import type { AppConfig } from "./config.js";
-import { loadConfig } from "./config.js";
-import { makeNonce, appCsp, rawArtifactCsp } from "./security.js";
-import { FileArtifactStore } from "./storage.js";
-import { artifactUrls, shareUrl } from "./url.js";
-import { validateCreateArtifact, validateCreateShare, validateCreateVersion } from "./validation.js";
-import { renderArtifactViewer, renderEmbed, renderHome, renderNotFound } from "./views.js";
+import type { AppConfig } from "../core/config.js";
+import { loadConfig } from "../core/config.js";
+import { validateCreateArtifact, validateCreateShare, validateCreateVersion } from "../core/validation.js";
+import { makeNonce, appCsp, rawArtifactCsp } from "../security/csp.js";
+import { FileArtifactStore } from "../storage/file-store.js";
+import { artifactUrls, shareUrl } from "../utils/url.js";
+import { renderArtifactViewer, renderEmbed, renderHome, renderNotFound } from "../view/pages.js";
 
 interface AppDependencies {
   config?: AppConfig;

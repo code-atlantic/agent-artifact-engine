@@ -13,6 +13,18 @@ npm run dev
 
 Open `http://127.0.0.1:3000`.
 
+The source is split by responsibility:
+
+```txt
+src/core/      config, types, validation
+src/http/      Fastify app and Node entrypoint
+src/render/    HTML and safe MDX rendering
+src/storage/   file-backed store
+src/view/      HTML viewer pages
+src/security/  CSP and sandbox helpers
+src/utils/     URL, slug, hash, taxonomy helpers
+```
+
 Publish an artifact:
 
 ```sh

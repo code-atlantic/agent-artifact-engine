@@ -1,9 +1,9 @@
 import { mkdtemp, rm } from "node:fs/promises";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
-import { buildApp } from "../src/app.js";
-import type { AppConfig } from "../src/config.js";
-import { FileArtifactStore } from "../src/storage.js";
+import type { AppConfig } from "../src/core/config.js";
+import { buildApp } from "../src/http/app.js";
+import { FileArtifactStore } from "../src/storage/file-store.js";
 
 async function makeTestApp(overrides: Partial<AppConfig> = {}) {
   const dataDir = await mkdtemp(join(tmpdir(), "agent-artifact-engine-"));

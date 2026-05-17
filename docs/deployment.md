@@ -38,7 +38,7 @@ npm run static:serve -- --dir static-export --port 4173
 npm ci
 npm run build
 npm prune --omit=dev
-PORT=3000 HOST=0.0.0.0 DATA_DIR=/var/lib/agent-artifacts node dist/server.js
+PORT=3000 HOST=0.0.0.0 DATA_DIR=/var/lib/agent-artifacts node dist/http/server.js
 ```
 
 Mount `DATA_DIR` on persistent storage.

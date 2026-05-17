@@ -1,5 +1,5 @@
-import type { AppConfig } from "./config.js";
-import type { Artifact, ArtifactShare, ArtifactVersion } from "./types.js";
+import type { AppConfig } from "../core/config.js";
+import type { Artifact, ArtifactShare, ArtifactVersion } from "../core/types.js";
 
 export interface ArtifactUrls {
   viewUrl: string;

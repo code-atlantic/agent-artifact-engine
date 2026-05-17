@@ -1,9 +1,9 @@
 import { randomBytes, randomUUID } from "node:crypto";
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
-import { sha256 } from "./hash.js";
-import { renderArtifactSource } from "./render-source.js";
-import { slugify, withNumericSuffix } from "./slug.js";
+import { renderArtifactSource } from "../render/source.js";
+import { sha256 } from "../utils/hash.js";
+import { slugify, withNumericSuffix } from "../utils/slug.js";
 import type {
   Artifact,
   ArtifactRecord,
@@ -14,7 +14,7 @@ import type {
   CreateArtifactInput,
   CreateShareInput,
   CreateVersionInput
-} from "./types.js";
+} from "../core/types.js";
 
 interface StoreIndex {
   artifacts: Artifact[];

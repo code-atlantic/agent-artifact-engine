@@ -1,4 +1,4 @@
-import type { AppConfig } from "./config.js";
+import type { AppConfig } from "../core/config.js";
 
 export function makeNonce(): string {
   const bytes = new Uint8Array(16);

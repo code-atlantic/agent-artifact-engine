@@ -4,14 +4,28 @@
   "description": "Self-hostable engine for publishing immutable HTML and safe MDX artifacts.",
   "type": "module",
   "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "docs"
+  ],
   "engines": {
     "node": ">=22"
   },
   "scripts": {
-    "dev": "tsx watch src/server.ts",
-    "build": "tsc -p tsconfig.json",
+    "dev": "tsx watch src/http/server.ts",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc -p tsconfig.json",
     "check": "npm run build && npm test",
-    "start": "node dist/server.js",
+    "start": "node dist/http/server.js",
     "test": "vitest run",
     "static:export": "tsx scripts/export-static.ts",
     "static:serve": "tsx scripts/serve-static.ts"

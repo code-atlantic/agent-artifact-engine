@@ -1,8 +1,8 @@
-import type { AppConfig } from "./config.js";
-import { escapeHtml } from "./html.js";
-import { artifactSandbox } from "./security.js";
-import { artifactUrls, shareUrl } from "./url.js";
-import type { Artifact, ArtifactRecord, ArtifactShare, ArtifactVersion } from "./types.js";
+import type { AppConfig } from "../core/config.js";
+import type { Artifact, ArtifactRecord, ArtifactShare, ArtifactVersion } from "../core/types.js";
+import { escapeHtml } from "../render/html.js";
+import { artifactSandbox } from "../security/csp.js";
+import { artifactUrls, shareUrl } from "../utils/url.js";
 
 interface ViewerOptions {
   share?: ArtifactShare;
