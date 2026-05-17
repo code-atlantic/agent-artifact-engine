@@ -38,6 +38,10 @@ const sanitizeSchema: Schema = {
     h5: [...(defaultSchema.attributes?.h5 ?? []), "id"],
     h6: [...(defaultSchema.attributes?.h6 ?? []), "id"],
     code: [...(defaultSchema.attributes?.code ?? []), ["className", /^language-[\w-]+$/]]
+  },
+  protocols: {
+    ...defaultSchema.protocols,
+    src: [...(defaultSchema.protocols?.src ?? []), "data"]
   }
 };
 
