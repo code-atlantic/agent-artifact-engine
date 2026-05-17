@@ -6,3 +6,6 @@ static-export/
 coverage/
 .DS_Store
 *.log
+.env
+.dev.vars
+.wrangler/

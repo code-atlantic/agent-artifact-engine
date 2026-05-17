@@ -62,13 +62,22 @@
     "./view/pages": {
       "types": "./dist/view/pages.d.ts",
       "import": "./dist/view/pages.js"
+    },
+    "./cloudflare/worker": {
+      "types": "./dist/cloudflare/worker.d.ts",
+      "import": "./dist/cloudflare/worker.js"
     }
   },
   "files": [
+    ".dev.vars.example",
+    ".env.example",
     "cloudflare",
     "dist",
+    "Dockerfile",
     "README.md",
-    "docs"
+    "docs",
+    "railway.toml",
+    "wrangler.jsonc"
   ],
   "engines": {
     "node": ">=22"
@@ -80,7 +89,13 @@
     "cf:pages:build": "npm run static:export",
     "cf:pages:deploy": "wrangler pages deploy static-export",
     "cf:pages:dev": "wrangler pages dev static-export",
+    "cf:worker:deploy": "npm run cf:worker:migrate:remote && wrangler deploy",
+    "cf:worker:dev": "wrangler dev",
+    "cf:worker:migrate": "wrangler d1 migrations apply DB --local",
+    "cf:worker:migrate:remote": "wrangler d1 migrations apply DB --remote",
+    "cf:worker:typecheck": "tsc -p tsconfig.cloudflare.json",
     "check": "npm run build && npm test",
+    "deploy": "npm run cf:worker:deploy",
     "start": "node dist/http/server.js",
     "test": "vitest run",
     "static:export": "tsx scripts/export-static.ts",
@@ -99,6 +114,7 @@
     "unified": "^11.0.5"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260516.1",
     "@types/node": "^25.0.0",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",

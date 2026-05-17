@@ -29,7 +29,7 @@ export function validateCreateArtifact(body: unknown, maxSourceBytes: number): V
   if (title.length > 140) return invalid("title must be 140 characters or fewer.");
   if (body.format !== undefined && !parseSourceFormat(body.format)) return invalid("format must be html or mdx.");
   if (!source) return invalid(`${sourceFormat === "mdx" ? "mdx" : "html"} is required.`);
-  if (Buffer.byteLength(source, "utf8") > maxSourceBytes) return invalid(`content exceeds ${maxSourceBytes} bytes.`);
+  if (byteLength(source) > maxSourceBytes) return invalid(`content exceeds ${maxSourceBytes} bytes.`);
   if (description && description.length > 500) return invalid("description must be 500 characters or fewer.");
   if (body.visibility !== undefined && !visibility) return invalid("visibility must be private, unlisted, or public.");
   if (slug && !isValidSlug(slug)) return invalid("slug must use lowercase letters, numbers, and hyphens.");
@@ -62,7 +62,7 @@ export function validateCreateVersion(body: unknown, maxSourceBytes: number): Va
 
   if (body.format !== undefined && !parseSourceFormat(body.format)) return invalid("format must be html or mdx.");
   if (!source) return invalid(`${sourceFormat === "mdx" ? "mdx" : "html"} is required.`);
-  if (Buffer.byteLength(source, "utf8") > maxSourceBytes) return invalid(`content exceeds ${maxSourceBytes} bytes.`);
+  if (byteLength(source) > maxSourceBytes) return invalid(`content exceeds ${maxSourceBytes} bytes.`);
 
   return { ok: true, value: { source, sourceFormat, createdBy: "agent" } };
 }
@@ -101,6 +101,10 @@ function invalid(message: string): ValidationResult<never> {
 
 function cleanString(value: unknown): string | undefined {
   return typeof value === "string" ? value.trim() : undefined;
+}
+
+function byteLength(value: string): number {
+  return new TextEncoder().encode(value).byteLength;
 }
 
 function readStringList(value: unknown): string[] {

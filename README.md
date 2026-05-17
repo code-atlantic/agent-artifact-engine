@@ -2,7 +2,11 @@
 
 Self-hostable engine for publishing immutable HTML and safe MDX artifacts.
 
-This repo is the OSS core. It intentionally does not include hosted SaaS concerns such as account signup, email token queues, billing, plan limits, admin portals, content scanning policy, abuse adjudication, or production-specific Cloudflare wiring.
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/code-atlantic/agent-artifact-engine)
+
+Railway button: pending template publication. See `docs/railway.md` for the button snippet and referral parameter.
+
+This repo is the OSS core. It intentionally does not include hosted SaaS concerns such as account signup, email token queues, billing, plan limits, admin portals, content scanning policy, abuse adjudication, or provider-specific production policy.
 
 ## Quick Start
 
@@ -23,6 +27,7 @@ src/storage/   file-backed store
 src/view/      HTML viewer pages
 src/security/  CSP and sandbox helpers
 src/utils/     URL, slug, hash, taxonomy helpers
+src/cloudflare/ optional Worker adapter
 ```
 
 Publish an artifact:
@@ -47,6 +52,8 @@ curl -X POST http://127.0.0.1:3000/v1/artifacts \
 - Share tokens for private/unlisted delivery.
 - Sandboxed viewer and raw artifact routes.
 - Static export for read-only hosting.
+- Dynamic Cloudflare Worker adapter backed by D1/R2.
+- Railway/VM/container deployment basics for the Node server.
 - Optional shared-token auth for self-hosted write protection.
 
 ## Environment
@@ -102,7 +109,16 @@ Static export is read-only. New publishes require running the dynamic server and
 
 ## Cloudflare
 
-The repo includes Cloudflare Pages deployment basics:
+Dynamic Worker deployment:
+
+```sh
+cp .dev.vars.example .dev.vars
+npm run cf:worker:migrate
+npm run cf:worker:dev
+npm run cf:worker:deploy
+```
+
+Static Pages deployment:
 
 ```sh
 STATIC_BASE_URL=https://your-project.pages.dev npm run static:export
@@ -110,6 +126,18 @@ npm run cf:pages:deploy -- --project-name your-project
 ```
 
 See `docs/cloudflare.md`.
+
+## Railway
+
+The repo includes `railway.toml` and a Dockerfile for Node/file-store hosting. Attach a Railway volume and set `DATA_DIR` to the mount path.
+
+The Deploy on Railway button requires a published Railway template:
+
+```md
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/agent-artifact-engine?utm_campaign=agent-artifact-engine&referralCode=YOUR_CODE)
+```
+
+See `docs/railway.md`.
 
 ## Boundary
 

@@ -1,6 +1,6 @@
 # Deployment
 
-The engine can run as a dynamic Node service or as a read-only static export.
+The engine can run as a dynamic Node service, a dynamic Cloudflare Worker, or as a read-only static export.
 
 ## Local Node
 
@@ -41,7 +41,37 @@ STATIC_BASE_URL=https://your-project.pages.dev npm run static:export
 npm run cf:pages:deploy -- --project-name your-project
 ```
 
-See `docs/cloudflare.md` for the included Wrangler Pages example and the future dynamic Worker adapter shape.
+## Cloudflare Workers
+
+The repo includes a Worker adapter backed by D1 and R2:
+
+```sh
+cp .dev.vars.example .dev.vars
+npm run cf:worker:migrate
+npm run cf:worker:dev
+```
+
+Deploy:
+
+```sh
+npm run cf:worker:deploy
+```
+
+See `docs/cloudflare.md`.
+
+## Railway
+
+Railway runs the Node server with the file store:
+
+```sh
+railway up
+```
+
+Use `railway.toml`, attach a volume, and set `DATA_DIR` to the mounted path. See `docs/railway.md`.
+
+## One-Click Buttons
+
+See `docs/one-click-deploy.md` for Cloudflare and Railway button snippets.
 
 ## Container Or VM
 

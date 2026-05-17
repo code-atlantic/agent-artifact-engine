@@ -1,0 +1,24 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "agent-artifact-engine",
+  "main": "src/cloudflare/worker.ts",
+  "compatibility_date": "2026-05-16",
+  "vars": {
+    "MAX_SOURCE_BYTES": "1048576",
+    "ARTIFACT_ALLOW_SCRIPTS": "false"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "agent-artifact-engine",
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "cloudflare/migrations"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "ARTIFACTS",
+      "bucket_name": "agent-artifact-engine-artifacts"
+    }
+  ]
+}

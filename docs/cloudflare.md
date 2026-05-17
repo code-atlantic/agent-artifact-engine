@@ -1,8 +1,50 @@
 # Cloudflare Deployment
 
-Cloudflare is a supported deployment target, but it is not required by the core engine.
+Cloudflare is a supported OSS deployment target, but it is not a hosted SaaS framework.
 
-The current OSS repo ships with a production-usable **Cloudflare Pages static export** path. A dynamic Worker/D1/R2 adapter should live as a separate adapter package or folder so it does not pull hosted SaaS policy into the core.
+This repo includes two Cloudflare paths:
+
+- **Workers + D1 + R2** for a dynamic self-hosted artifact API.
+- **Pages static export** for a read-only artifact archive.
+
+Neither path includes hosted-provider concerns such as account signup, email, moderation queues, billing, admin review, usage plans, or shared operational policy.
+
+## Deploy To Cloudflare
+
+```md
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/code-atlantic/agent-artifact-engine)
+```
+
+Cloudflare reads `wrangler.jsonc`, provisions the D1 database and R2 bucket, and deploys the Worker. The package `deploy` script runs D1 migrations before `wrangler deploy`.
+
+For manual setup:
+
+```sh
+cp .dev.vars.example .dev.vars
+wrangler d1 create agent-artifact-engine
+wrangler r2 bucket create agent-artifact-engine-artifacts
+```
+
+Update `wrangler.jsonc` with the D1 `database_id`, then run:
+
+```sh
+npm run cf:worker:migrate
+npm run cf:worker:dev
+npm run cf:worker:deploy
+```
+
+Use `wrangler secret put PUBLISH_TOKEN` for production write protection.
+
+`PUBLIC_BASE_URL` and `ARTIFACT_BASE_URL` are optional. If omitted, the Worker uses the incoming request origin.
+
+## Worker Runtime
+
+The Worker adapter uses:
+
+- D1 for artifact metadata, versions, shares, tags, and categories.
+- R2 for rendered HTML, original source, thumbnails, and future file blobs.
+- Core validation, rendering, CSP, URL, taxonomy, and view helpers from the engine.
+- The same core routes as the Node server, including `POST /v1/artifacts`, `/a/:slug`, `/s/:token`, and `/raw/:versionId`.
 
 ## Cloudflare Pages
 
@@ -53,19 +95,7 @@ The export writes:
 
 There is no publish API on the static export. Publish through the Node server, run `npm run static:export`, then deploy the updated output.
 
-## Dynamic Worker Adapter
-
-For a fully dynamic Cloudflare deployment, the adapter shape should be:
-
-- Worker handles HTTP routing and CSP headers.
-- D1 stores artifact metadata, versions, shares, tags, and categories.
-- R2 stores rendered HTML, original source, thumbnails, and future file bundles.
-- The core renderer, validation, taxonomy, URL helpers, and view helpers are imported from `agent-artifact-engine`.
-- Host-owned layers provide identity, rate limiting, moderation, analytics, admin, billing, and abuse workflows.
-
-The dynamic Worker adapter is intentionally not mixed into the core Node/file-store runtime. That keeps the OSS package portable and keeps hosted-provider policy outside the engine.
-
-## Minimal D1 Shape For A Future Adapter
+## D1 Schema
 
 ```sql
 CREATE TABLE artifacts (
@@ -120,3 +150,5 @@ CREATE TABLE artifact_categories (
   PRIMARY KEY (artifact_id, category)
 );
 ```
+
+The full migration lives at `cloudflare/migrations/0001_core.sql`.
