@@ -5,8 +5,6 @@ Self-hostable engine for publishing immutable HTML and safe MDX artifacts.
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/code-atlantic/agent-artifact-engine)
 [![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/fMPNjv?referralCode=nzxj46&utm_medium=integration&utm_source=template&utm_campaign=generic)
 
-See `docs/railway.md` for Railway storage and template notes.
-
 This repo is the OSS core. It intentionally does not include hosted SaaS concerns such as account signup, email token queues, billing, plan limits, admin portals, content scanning policy, abuse adjudication, or provider-specific production policy.
 
 ## Quick Start
@@ -130,13 +128,7 @@ See `docs/cloudflare.md`.
 
 ## Railway
 
-The repo includes `railway.toml`, a Dockerfile, and a published Railway template for Node/file-store hosting.
-
-```md
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/fMPNjv?referralCode=nzxj46&utm_medium=integration&utm_source=template&utm_campaign=generic)
-```
-
-See `docs/railway.md`.
+Deploy with the Railway button above. The template mounts persistent storage at `/data`; see `docs/railway.md` for storage and template notes.
 
 ## Boundary
 
