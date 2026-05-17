@@ -7,13 +7,13 @@ Railway runs the Node/file-store server. It is a good one-click target for peopl
 The published Railway template is:
 
 ```md
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/fMPNjv?referralCode=nzxj46&utm_medium=integration&utm_source=template&utm_campaign=generic)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/agent-artifact-engine)
 ```
 
 Template URL:
 
 ```txt
-https://railway.com/deploy/fMPNjv?referralCode=nzxj46&utm_medium=integration&utm_source=template&utm_campaign=generic
+https://railway.com/deploy/agent-artifact-engine
 ```
 
 The CLI command `railway deploy -t <template>` can deploy an already-published template into a project.

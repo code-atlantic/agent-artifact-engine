@@ -3,7 +3,7 @@
 Self-hostable engine for publishing immutable HTML and safe MDX artifacts.
 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/code-atlantic/agent-artifact-engine)
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/fMPNjv?referralCode=nzxj46&utm_medium=integration&utm_source=template&utm_campaign=generic)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/agent-artifact-engine)
 
 This repo is the OSS core. It intentionally does not include hosted SaaS concerns such as account signup, email token queues, billing, plan limits, admin portals, content scanning policy, abuse adjudication, or provider-specific production policy.
 

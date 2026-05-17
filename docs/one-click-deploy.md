@@ -15,7 +15,7 @@ Cloudflare reads `wrangler.jsonc`, provisions D1/R2 bindings, and runs the Worke
 The Railway button points at the published template:
 
 ```md
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/fMPNjv?referralCode=nzxj46&utm_medium=integration&utm_source=template&utm_campaign=generic)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/agent-artifact-engine)
 ```
 
 Minimum Railway template setup:
