@@ -12,7 +12,7 @@ Cloudflare reads `wrangler.jsonc`, provisions D1/R2 bindings, and runs the Worke
 
 ## Railway
 
-Railway buttons point at a published Railway template, not directly at arbitrary repo config:
+Railway buttons point at a published Railway template, not directly at arbitrary repo config. The Railway CLI can smoke-deploy the project, but template publishing happens in the Railway dashboard:
 
 ```md
 [![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/agent-artifact-engine?utm_campaign=agent-artifact-engine)

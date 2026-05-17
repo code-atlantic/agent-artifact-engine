@@ -4,7 +4,7 @@ Self-hostable engine for publishing immutable HTML and safe MDX artifacts.
 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/code-atlantic/agent-artifact-engine)
 
-Railway button: pending template publication. See `docs/railway.md` for the button snippet and referral parameter.
+Railway button: pending template publication in the Railway dashboard. See `docs/railway.md` for the publish steps, button snippet, and referral parameter.
 
 This repo is the OSS core. It intentionally does not include hosted SaaS concerns such as account signup, email token queues, billing, plan limits, admin portals, content scanning policy, abuse adjudication, or provider-specific production policy.
 

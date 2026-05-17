@@ -4,7 +4,7 @@ Railway runs the Node/file-store server. It is a good one-click target for peopl
 
 ## Deploy Button
 
-Create a Railway template from this GitHub repo, then replace the placeholder template code:
+The CLI can deploy this repo with `railway up`, but publishing a reusable Railway template is a dashboard action. Create a Railway template from this GitHub repo, publish it from Workspace Settings -> Templates, then replace the placeholder template code:
 
 ```md
 [![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/agent-artifact-engine?utm_campaign=agent-artifact-engine)
@@ -17,6 +17,8 @@ If you have a Railway referral link, append its referral parameter to the templa
 ```
 
 Do not publish the README button until the template exists, otherwise it will send users to a missing template.
+
+The CLI command `railway deploy -t <template>` deploys an already-published template into a project. It does not publish this repo as a new template.
 
 ## Template Settings
 
@@ -41,3 +43,19 @@ ARTIFACT_ALLOW_SCRIPTS=false
 ```
 
 The Railway template is still OSS self-hosting. It does not add SaaS accounts, email, moderation, billing, admin tooling, or shared infrastructure.
+
+## CLI Smoke Deploy
+
+Once the CLI is logged in:
+
+```sh
+railway login
+railway init
+railway volume add --mount-path /data
+railway variables --set "HOST=0.0.0.0" --set "DATA_DIR=/data" --set "ARTIFACT_ALLOW_SCRIPTS=false"
+railway variables --set "PUBLISH_TOKEN=<generated secret>"
+railway up
+railway domain
+```
+
+Use the resulting service as the live demo project when publishing the template.
