@@ -2,13 +2,30 @@
 
 Small stdio MCP server that lets agents publish and share artifacts on any Agent Artifact Engine instance.
 
-## Build
+## Run With npx
+
+```json
+{
+  "mcpServers": {
+    "agent-artifact-engine": {
+      "command": "npx",
+      "args": ["-y", "agent-artifact-engine-mcp"],
+      "env": {
+        "AGENT_ARTIFACT_ENGINE_URL": "https://your-engine.example.com",
+        "AGENT_ARTIFACT_ENGINE_TOKEN": "optional-publish-token"
+      }
+    }
+  }
+}
+```
+
+## Build From Source
 
 ```sh
 npm run mcp:build
 ```
 
-## Configure
+## Configure From Source
 
 ```json
 {

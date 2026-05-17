@@ -1,10 +1,10 @@
 {
-  "name": "@agent-artifact-engine/mcp",
+  "name": "agent-artifact-engine-mcp",
   "version": "0.1.0",
   "description": "MCP stdio server for publishing to any Agent Artifact Engine instance.",
   "type": "module",
   "bin": {
-    "agent-artifact-engine-mcp": "./dist/server.js"
+    "agent-artifact-engine-mcp": "dist/server.js"
   },
   "files": [
     "dist",
@@ -17,6 +17,23 @@
     "node": ">=22"
   },
   "license": "MIT",
+  "keywords": [
+    "agent-artifact-engine",
+    "mcp",
+    "agents",
+    "html",
+    "mdx",
+    "artifacts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/code-atlantic/agent-artifact-engine.git",
+    "directory": "mcp/agent-artifact-engine"
+  },
+  "bugs": {
+    "url": "https://github.com/code-atlantic/agent-artifact-engine/issues"
+  },
+  "homepage": "https://github.com/code-atlantic/agent-artifact-engine/tree/main/mcp/agent-artifact-engine",
   "devDependencies": {
     "@types/node": "^25.0.0",
     "typescript": "^5.9.3"

@@ -9,6 +9,14 @@ This repo is the OSS core. It intentionally does not include hosted SaaS concern
 
 ## Quick Start
 
+Start a local engine with `npx`:
+
+```sh
+npx -y agent-artifact-engine
+```
+
+Or clone and run from source:
+
 ```sh
 npm install
 npm run dev
@@ -145,8 +153,8 @@ Configure it with any Agent Artifact Engine URL:
 {
   "mcpServers": {
     "agent-artifact-engine": {
-      "command": "node",
-      "args": ["/absolute/path/to/agent-artifact-engine/mcp/agent-artifact-engine/dist/server.js"],
+      "command": "npx",
+      "args": ["-y", "agent-artifact-engine-mcp"],
       "env": {
         "AGENT_ARTIFACT_ENGINE_URL": "https://your-engine.example.com",
         "AGENT_ARTIFACT_ENGINE_TOKEN": "optional-publish-token"
