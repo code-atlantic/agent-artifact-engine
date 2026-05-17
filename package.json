@@ -118,6 +118,8 @@
     "check": "npm run build && npm run mcp:build && npm test",
     "deploy": "npm run cf:worker:deploy",
     "mcp:build": "npm --prefix mcp/agent-artifact-engine run build",
+    "mcp:pack": "cd mcp/agent-artifact-engine && npm pack --dry-run",
+    "release:check": "npm run check && npm pack --dry-run && npm run mcp:pack",
     "start": "node dist/http/server.js",
     "test": "vitest run",
     "static:export": "tsx scripts/export-static.ts",

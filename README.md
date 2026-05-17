@@ -24,6 +24,14 @@ npm run dev
 
 Open `http://127.0.0.1:3000`.
 
+Expose it through a temporary Cloudflare Tunnel:
+
+```sh
+npx -y agent-artifact-engine --host 127.0.0.1 --port 3000 & cloudflared tunnel --url http://127.0.0.1:3000
+```
+
+For a named tunnel/custom domain, set `PUBLIC_BASE_URL` and `ARTIFACT_BASE_URL` to that public URL before starting the engine.
+
 The source is split by responsibility:
 
 ```txt
@@ -165,6 +173,10 @@ Configure it with any Agent Artifact Engine URL:
 ```
 
 See `mcp/agent-artifact-engine/README.md`.
+
+## Releases
+
+Active work happens on `develop`; release-ready code lands on `main`. Official releases use semver tags such as `v0.1.0`. See `docs/release.md`.
 
 ## Boundary
 

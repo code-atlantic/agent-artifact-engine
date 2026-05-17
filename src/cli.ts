@@ -133,6 +133,6 @@ Options:
 
 Examples:
   npx agent-artifact-engine
-  npx agent-artifact-engine -- --port 3107 --data-dir .agent-artifacts
+  npx agent-artifact-engine --port 3107 --data-dir .agent-artifacts
 `);
 }

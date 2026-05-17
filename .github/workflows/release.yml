@@ -1,0 +1,47 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  npm:
+    name: Publish npm Packages
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          registry-url: https://registry.npmjs.org
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify tag matches package versions
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}" node -e "const root = require('./package.json'); const mcp = require('./mcp/agent-artifact-engine/package.json'); const version = process.env.VERSION; if (root.version !== version || mcp.version !== version) { console.error(\`Tag v${version} must match root (${root.version}) and MCP (${mcp.version}) package versions.\`); process.exit(1); }"
+
+      - name: Run checks
+        run: npm run check
+
+      - name: Publish root package
+        run: npm publish --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish MCP package
+        working-directory: mcp/agent-artifact-engine
+        run: npm publish --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -9,6 +9,16 @@ This repo includes two Cloudflare paths:
 
 Neither path includes hosted-provider concerns such as account signup, email, moderation queues, billing, admin review, usage plans, or shared operational policy.
 
+## Quick Tunnel
+
+For local previews with `cloudflared` installed:
+
+```sh
+npx -y agent-artifact-engine --host 127.0.0.1 --port 3000 & cloudflared tunnel --url http://127.0.0.1:3000
+```
+
+For named tunnels or custom domains, set `PUBLIC_BASE_URL` and `ARTIFACT_BASE_URL` to the public URL so API responses contain shareable links.
+
 ## Deploy To Cloudflare
 
 ```md
